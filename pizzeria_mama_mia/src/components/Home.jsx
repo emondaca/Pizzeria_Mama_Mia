@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import { Container } from 'react-bootstrap'
+import { pizzas } from './pizzas'
 
 const Home = () => {
   return (
@@ -12,31 +13,19 @@ const Home = () => {
         
         <Container>
         <Row>
-            <Col>
+            {pizzas.map((props) => (
+            <Col key={props}>
                 <CardPizza 
-                    name = "Pizza Napolitana"
-                    precio = {5950}
-                    ingredientes = {["mozzarella, ", "tomates, ", "jamón, ", "orégano"]}
-                    img = "https://firebasestorage.googleapis.com/v0/b/apis-varias-mias.appspot.com/o/pizzeria%2Fpizza-1239077_640_cl.jpg?alt=media&token=6a9a33da-5c00-49d4-9080-784dcc87ec2c">
+                    name = {props.name}
+                    precio = {props.price}
+                    ingredientes = {props.ingredients}
+                    img = {props.img}
+                >
                 </CardPizza>
             </Col>
-            <Col>
-                <CardPizza
-                    name = "Pizza Española"
-                    precio = {6950}
-                    ingredientes = {["mozzarella, ", "pepperoni, ", "parmesano. ", "provolone"]}
-                    img = "https://firebasestorage.googleapis.com/v0/b/apis-varias-mias.appspot.com/o/pizzeria%2Fcheese-164872_640_com.jpg?alt=media&token=18b2b821-4d0d-43f2-a1c6-8c57bc388fab">
-                </CardPizza>
-            </Col>
-            <Col>
-                <CardPizza
-                    name = "Pizza Pepperoni"
-                    precio = {6950}
-                    ingredientes = {["mozzarella, ", "pepperoni, ", "orégano"]}
-                    img = "https://firebasestorage.googleapis.com/v0/b/apis-varias-mias.appspot.com/o/pizzeria%2Fpizza-1239077_640_com.jpg?alt=media&token=e7cde87a-08d5-4040-ac54-90f6c31eb3e3">
 
-                </CardPizza>
-            </Col>
+        ))}
+           
         </Row>
         </Container>
     </>

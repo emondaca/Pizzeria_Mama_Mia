@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Button, Card, Col, Container, Row } from 'react-bootstrap'
+import { Button, Card, Col, Container, ListGroup, Row } from 'react-bootstrap'
 
 const CardPizza = (props) => {
   return (
@@ -11,7 +11,14 @@ const CardPizza = (props) => {
           <Card.Text className = "text-center">
               <hr></hr>
               <h4>Ingredientes:</h4>
-              <h6>🍕 {props.ingredientes}</h6>
+              <ListGroup horizontal className='border-0 align-items-center'>
+                🍕 { props.ingredientes.map((ing) => (
+                  <ListGroup.Item key={ing} className='border-0 mx-0 px-1'>
+                  <h6>{ing}</h6>
+                  </ListGroup.Item>
+                ))}
+
+              </ListGroup>
               <hr></hr>
               <h2>Precio: $<span >{props.precio}</span></h2>
           </Card.Text>
