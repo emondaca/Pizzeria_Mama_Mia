@@ -1,4 +1,4 @@
-import Header from './Header'
+/*import Header from '../components/Header'*/
 /*import CardPizza from './CardPizza'*/
 import Pizza from './Pizza'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -9,9 +9,9 @@ import { Container } from 'react-bootstrap'
 import { useEffect, useState } from 'react'
 
 
-const Home = () => {
+const Pizza01 = () => {
 
-  const [pizzas, setPizzas] = useState([]);
+  const [p001, setP001] = useState();
  
   useEffect(() => {
     consultarApi();
@@ -20,35 +20,31 @@ const Home = () => {
   const consultarApi = async () => {
     const resp = await fetch('http://localhost:5000/api/pizzas');
     const data = await resp.json();
-    setPizzas(data);
+    console.log(data)
+    setP001(data[0]);
   };
+  console.log(p001);
  
 
   return (
     <>
-        <Header></Header>
-        
         <Container>
         <Row>
-           {pizzas.map((props) => (
-            <Col key = {props} >
-                <Pizza 
-                    imagen = {props.img}
-                    nombre = {props.name}
-                    descripcion = {props.desc}
-                    ingredientes = {props.ingredients}
-                    precio = {props.price}
-                >
-
-                </Pizza>
+            <Col>
+              <Pizza 
+                  imagen = {p001.img}
+                  nombre = {p001.name}
+                  descripcion = {p001.desc}
+                  ingredientes = {p001.ingredients}
+                  precio = {p001.price}
+              >
+              </Pizza>
             </Col>
 
-        ))}
-           
         </Row>
         </Container>
     </>
   )
 }
 
-export default Home
+export default Pizza01

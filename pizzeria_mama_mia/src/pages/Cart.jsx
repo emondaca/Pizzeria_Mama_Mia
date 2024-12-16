@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { useState } from 'react'
-import { pizzaCart } from './pizzas'
+import { pizzaCart } from '../components/pizzas'
 import { Image, ListGroup, Button, Container, ListGroupItem } from 'react-bootstrap'
 
 const Cart = () => {
