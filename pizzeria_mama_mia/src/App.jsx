@@ -9,43 +9,45 @@ import LoginPage from './pages/LoginPage'
 import Pizza01 from './pages/Pizza01'
 import NotFound from './pages/NotFound'
 import Profile from './pages/Profile'
+import CarritoProvider from './context/CarritoContext'
 
 function App() {
 
   return (
     <>
-      <Navbar1></Navbar1>
-      <Routes>
-        <Route 
-          path="/"
-          element={<Home></Home> }
-        />
+      <CarritoProvider>
+        <Navbar1></Navbar1>
+        <Routes>
+          <Route 
+            path="/"
+            element={<Home></Home> }
+          />
+            <Route
+              path="/register"
+              element = { <RegisterPage></RegisterPage> }
+          />
           <Route
-            path="/register"
-            element = { <RegisterPage></RegisterPage> }
-        />
-        <Route
-            path="/login"
-            element = { <LoginPage></LoginPage> }
-        />
-        <Route
-            path="/cart"
-            element = { <Cart></Cart> }
-        />
-        <Route
-          path="/pizza/p001"
-          element = { <Pizza01></Pizza01>}
-        />
-        <Route
-          path="/profile"
-          element = { <Profile></Profile>}
-        />
-        <Route
-            path="/*"
-            element = { <NotFound></NotFound> }
-        />
-      </Routes>
-      
+              path="/login"
+              element = { <LoginPage></LoginPage> }
+          />
+          <Route
+              path="/cart"
+              element = { <Cart></Cart> }
+          />
+          <Route
+            path="/pizza/p001"
+            element = { <Pizza01></Pizza01>}
+          />
+          <Route
+            path="/profile"
+            element = { <Profile></Profile>}
+          />
+          <Route
+              path="/*"
+              element = { <NotFound></NotFound> }
+          />
+        </Routes>
+      </CarritoProvider>
       
       <Footer></Footer>
       

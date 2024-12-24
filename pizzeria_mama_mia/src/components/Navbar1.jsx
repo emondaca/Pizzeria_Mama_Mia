@@ -4,9 +4,18 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { CarritoContext } from '../context/CarritoContext';
 
 
 const Navbar1 = () => {
+  const {pizzasCarro, setPizzasCarro} = useContext(CarritoContext);
+
+  var total = 0;
+    {pizzasCarro.map((props) => (
+        total += props.count*props.price
+    ))}
+
   return (
     <>
     <Navbar bg="dark" data-bs-theme="dark">
@@ -24,7 +33,7 @@ const Navbar1 = () => {
           </Link>
         </Nav>
         <Link to="/cart">
-          <Button type= "checkbox" variant = "outline-info" className = "me-2">🛒 Total:</Button>
+          <Button type= "checkbox" variant = "outline-info" className = "me-2">🛒 Total: ${total} </Button>
         </Link>
       </Container>
     </Navbar>

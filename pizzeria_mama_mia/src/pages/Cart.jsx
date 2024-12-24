@@ -1,10 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { useState } from 'react'
-import { pizzaCart } from '../components/pizzas'
+import { useContext } from 'react'
 import { Image, ListGroup, Button, Container, ListGroupItem } from 'react-bootstrap'
+import { CarritoContext } from '../context/CarritoContext'
 
 const Cart = () => {
-  const [pizzasCarro, setPizzasCarro] = useState(pizzaCart)
+  const {pizzasCarro, setPizzasCarro} = useContext(CarritoContext);
 
   const handleAgregar = (indice) => {
     pizzasCarro[indice].count++;
@@ -17,9 +17,9 @@ const Cart = () => {
   }
 
   var total = 0;
-    {pizzasCarro.map((props) => (
+  {pizzasCarro.map((props) => (
         total += props.count*props.price
-    ))}
+  ))}
 
   return (
     <>

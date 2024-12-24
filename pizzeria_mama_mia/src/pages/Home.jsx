@@ -8,7 +8,6 @@ import { Container } from 'react-bootstrap'
 /*import { pizzas } from './pizzas'*/
 import { useEffect, useState } from 'react'
 
-
 const Home = () => {
 
   const [pizzas, setPizzas] = useState([]);
@@ -33,6 +32,7 @@ const Home = () => {
            {pizzas.map((props) => (
             <Col key = {props} >
                 <Pizza 
+                    id = {props.id}
                     imagen = {props.img}
                     nombre = {props.name}
                     descripcion = {props.desc}

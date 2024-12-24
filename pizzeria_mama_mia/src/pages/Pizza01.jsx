@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react'
 
 const Pizza01 = () => {
 
-  const [p001, setP001] = useState();
+  const [p001, setP001] = useState({});
  
   useEffect(() => {
     consultarApi();
@@ -20,9 +20,11 @@ const Pizza01 = () => {
   const consultarApi = async () => {
     const resp = await fetch('http://localhost:5000/api/pizzas');
     const data = await resp.json();
-    console.log(data)
+    console.log(data[0]);
     setP001(data[0]);
+    console.log(p001);
   };
+  
   console.log(p001);
  
 

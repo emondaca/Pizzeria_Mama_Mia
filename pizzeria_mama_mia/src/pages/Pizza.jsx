@@ -1,9 +1,12 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { Button, Card, Col, Container, ListGroup, Row } from 'react-bootstrap'
+import { CarritoContext } from '../context/CarritoContext'
 
 const Pizza = (props)=> {
+  const { pizzasCarro, setPizzasCarro } = useContext(CarritoContext);
 
+  const [id, setId] =useState();
   const [imagen, setImagen] = useState();
   const [nombre, setNombre] = useState();
   const [descripcion, setDescripcion] = useState();
@@ -11,6 +14,7 @@ const Pizza = (props)=> {
   const [precio, setPrecio] = useState();
 
   useEffect(() => {
+    setId(props.id)
     setImagen(props.imagen);
     setNombre(props.nombre);
     setDescripcion(props.descripcion);
@@ -18,6 +22,17 @@ const Pizza = (props)=> {
     setPrecio(props.precio)
   }, []);
 
+  const handleAgregar = () => {
+    var indexOfPizza = pizzasCarro.map(pizza => pizza.id).indexOf(props.id);
+
+   if (indexOfPizza  >= 0) {
+      pizzasCarro[indexOfPizza].count++;
+    }
+    else {
+      pizzasCarro.push({id: props.id, img: props.imagen, name: props.nombre, price: props.precio, count: 1});
+    };
+    setPizzasCarro([...pizzasCarro]);
+  }
 
   return (
     <>
@@ -48,7 +63,7 @@ const Pizza = (props)=> {
                 <Card.Link><Button type= "checkbox" variant = "outline-secondary" >Ver Más 👀</Button></Card.Link>
               </Col>
               <Col className = "text-end">
-                <Card.Link><Button variant="dark">Añadir 🛒</Button></Card.Link>
+                <Card.Link><Button variant="dark" onClick={() => handleAgregar()}>Añadir 🛒</Button></Card.Link>
               </Col>
             </Row>
           </Container>
