@@ -12,7 +12,7 @@ const UserProvider = ({ children }) => {
     const [user, setUser] = useState("")
 
 
-/* Login */
+/* Registro */
     const registerMe = async (e) => {
         e.preventDefault();
         const response = await fetch("http://localhost:5000/api/auth/register", {
@@ -28,7 +28,7 @@ const UserProvider = ({ children }) => {
         const data = await response.json();
         alert(data?.error || "Datos Ingresados Correctamente");
         localStorage.setItem("token", data.token);
-        setTokenPresente((localStorage.getItem("token") != null) ? true : false)
+        setTokenPresente(((localStorage.getItem("token") != 'null') && (localStorage.getItem("token") != 'undefined')) ? true : false)
     };
 
     /* Login */
@@ -47,7 +47,7 @@ const UserProvider = ({ children }) => {
         const data = await response.json();
         alert(data?.error || "Authentication successful!");
         localStorage.setItem("token", data.token);
-        setTokenPresente((localStorage.getItem("token") != null) ? true : false)
+        setTokenPresente(((localStorage.getItem("token") != 'null') && (localStorage.getItem("token") != 'undefined')) ? true : false)
     };
 
 
