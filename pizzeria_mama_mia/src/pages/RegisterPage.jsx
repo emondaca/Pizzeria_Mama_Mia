@@ -1,10 +1,14 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { UserContext } from '../context/UserContext';
 
 
 function RegisterPage() {
-  const [email, setEmail] = useState("")
+
+  const {user, setEmail, setPassword, setUser, registerMe} = useContext(UserContext)
+
+  const [email, setMail] = useState("")
   const [pass, setPass] = useState("")
   const [repass, setRepass] = useState("")
 
@@ -18,7 +22,9 @@ function RegisterPage() {
         alert('El password no coincide con su confirmación')
 
     } else {
-        alert ('Datos enviados')
+        alert ('datos enviados');
+        setUser(email);
+        
     };
     document.getElementById("#email").reset();
 
@@ -38,7 +44,7 @@ function RegisterPage() {
       <Form.Group className="mb-3 mx-5 w-50 d-flex flex-column" controlId="formBasicPassword">
         <Form.Label>Password</Form.Label>
         <input type="password" placeholder="Enter your password" 
-            onChange={(e) => setPass(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
         />
       </Form.Group>
 
@@ -49,8 +55,8 @@ function RegisterPage() {
         />
       </Form.Group>
 
-      <Button className="mx-5" variant="primary" type="submit" onClick = {handleSubmit}>
-        Login
+      <Button className="mx-5" variant="primary" type="submit" onClick = {registerMe}>
+        Enviar
       </Button>
     </Form>
   );

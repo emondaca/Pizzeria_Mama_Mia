@@ -1,13 +1,33 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
+import { useContext } from 'react'
 import { Button, Card, Col, Container, ListGroup, Row } from 'react-bootstrap'
+import { CarritoContext } from '../context/CarritoContext'
 
 const CardPizza = (props) => {
+
+  const { pizzasCarro, setPizzasCarro} = useContext(CarritoContext)
+
+  const handleAgregar = () => {
+    var indexOfPizza = pizzasCarro.map(pizza => pizza.id).indexOf(props.id);
+
+   if (indexOfPizza  >= 0) {
+      pizzasCarro[indexOfPizza].count++;
+    }
+    else {
+      pizzasCarro.push({id: props.id, img: props.imagen, name: props.nombre, price: props.precio, count: 1});
+    };
+    setPizzasCarro([...pizzasCarro]);
+  }
+
   return (
     <>
       <Card >
         <Card.Img variant="top" src= {props.imagen} />
         <Card.Body>
           <Card.Title> <h4><strong>{props.nombre}</strong></h4></Card.Title>
+          <Card.Text>
+            <h6>{props.descripcion}</h6>
+          </Card.Text>
           <Card.Text className = "text-center">
               <hr></hr>
               <h4>Ingredientes:</h4>
@@ -21,17 +41,10 @@ const CardPizza = (props) => {
               </ListGroup>
               <hr></hr>
               <h2>Precio: $<span >{props.precio}</span></h2>
+              <Button variant="dark" onClick={() => handleAgregar()}>Añadir 🛒</Button>
           </Card.Text>
-          <Container fluid = "true">
-            <Row className = "mx-4">
-              <Col>
-                <Card.Link><Button type= "checkbox" variant = "outline-secondary" >Ver Más 👀</Button></Card.Link>
-              </Col>
-              <Col className = "text-end">
-                <Card.Link><Button variant="dark">Añadir 🛒</Button></Card.Link>
-              </Col>
-            </Row>
-          </Container>
+          
+          
         </Card.Body>
       </Card>
     </>

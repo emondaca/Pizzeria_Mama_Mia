@@ -5,3 +5,7 @@
     color: white;
     font-weight: bold;
 }
+.active-nav button {
+    background-color: rgb(137, 145, 145);
+    color: darkblue;
+}

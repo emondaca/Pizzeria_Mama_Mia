@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { useState, useEffect, useContext } from 'react'
 import { Button, Card, Col, Container, ListGroup, Row } from 'react-bootstrap'
 import { CarritoContext } from '../context/CarritoContext'
+import { useNavigate } from 'react-router-dom'
 
 const Pizza = (props)=> {
   const { pizzasCarro, setPizzasCarro } = useContext(CarritoContext);
@@ -22,6 +23,8 @@ const Pizza = (props)=> {
     setPrecio(props.precio)
   }, []);
 
+  const navigate = useNavigate();
+  
   const handleAgregar = () => {
     var indexOfPizza = pizzasCarro.map(pizza => pizza.id).indexOf(props.id);
 
@@ -60,7 +63,7 @@ const Pizza = (props)=> {
           <Container fluid = "true">
             <Row className = "mx-4">
               <Col>
-                <Card.Link><Button type= "checkbox" variant = "outline-secondary" >Ver Más 👀</Button></Card.Link>
+                <Card.Link><Button type= "checkbox" variant = "outline-secondary" onClick={() => navigate(`/pizza/${props.id}`)}>Ver Más 👀</Button></Card.Link>
               </Col>
               <Col className = "text-end">
                 <Card.Link><Button variant="dark" onClick={() => handleAgregar()}>Añadir 🛒</Button></Card.Link>

@@ -6,11 +6,15 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import { Container } from 'react-bootstrap'
 /*import { pizzas } from './pizzas'*/
-import { useEffect, useState } from 'react'
+import { useEffect, useState} from 'react'
+import { useContext } from 'react'
+import { PizzasContext } from '../context/PizzasContext'
 
 const Home = () => {
 
-  const [pizzas, setPizzas] = useState([]);
+  const { pizzas } = useContext(PizzasContext);
+
+  /* const [pizzas, setPizzas] = useState([]);
  
   useEffect(() => {
     consultarApi();
@@ -20,8 +24,8 @@ const Home = () => {
     const resp = await fetch('http://localhost:5000/api/pizzas');
     const data = await resp.json();
     setPizzas(data);
-  };
- 
+    setPizzass(data);
+  }; */
 
   return (
     <>
